@@ -13,18 +13,24 @@ class SpotPriceViewModel : ViewModel() {
     var prices = mutableStateOf<List<ElectricityPrice>>(emptyList())
         private set
 
+    var isLoading = mutableStateOf(true)
+        private set
+
     init {
         getPrices()
     }
 
     private fun getPrices() {
         viewModelScope.launch {
+            isLoading.value = true
             try {
                 val apiService = ElectricityPriceAPI.getInstance()
                 val response = apiService.getPrices()
                 prices.value = response.prices
             } catch (e: Exception) {
                 Log.e("SpotPriceViewModel", "Error loading prices", e)
+            } finally {
+                isLoading.value = false
             }
         }
     }
