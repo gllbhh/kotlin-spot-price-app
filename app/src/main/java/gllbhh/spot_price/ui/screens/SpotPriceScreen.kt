@@ -1,7 +1,11 @@
 package gllbhh.spot_price.ui.screens
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -15,13 +19,13 @@ import gllbhh.spot_price.viewmodel.SpotPriceViewModel
 fun SpotPriceScreen(modifier: Modifier = Modifier, viewModel: SpotPriceViewModel) {
     val prices = viewModel.prices.value
 
-    Column(modifier = modifier) {
-        prices.forEach { price ->
-            SpotPriceItem(price = price)
-            HorizontalDivider(
-                color = MaterialTheme.colorScheme.outline,
-                thickness = 1.dp
-            )
+    LazyColumn(
+        modifier = modifier.padding(horizontal = 16.dp),
+        verticalArrangement = Arrangement.spacedBy(1.dp)
+    ) {
+        items(prices) { item ->
+            SpotPriceItem(priceItem = item)
+
         }
     }
 }
