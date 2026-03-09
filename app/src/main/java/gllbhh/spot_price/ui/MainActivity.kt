@@ -15,6 +15,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import gllbhh.spot_price.R
+import gllbhh.spot_price.ui.navigation.SpotPriceDrawerApp
+import gllbhh.spot_price.ui.navigation.SpotPriceNavHost
 import gllbhh.spot_price.ui.screens.SpotPriceScreen
 import gllbhh.spot_price.ui.theme.SpotPriceTheme
 import gllbhh.spot_price.viewmodel.SpotPriceViewModel
@@ -34,14 +36,9 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize()
                     )
 
-                    Scaffold(
-                        modifier = Modifier.fillMaxSize(),
-                        containerColor = Color.Transparent) { innerPadding ->
-                        SpotPriceScreen(
-                            modifier = Modifier.padding(innerPadding),
-                            viewModel = spotPriceViewModel
-                        )
-                    }
+                    SpotPriceDrawerApp(
+                        modifier = Modifier.fillMaxSize()
+                    )
                 }
             }
         }

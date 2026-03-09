@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import gllbhh.spot_price.model.ElectricityPrice
 import gllbhh.spot_price.model.ElectricityPriceAPI
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.delay
 
 class SpotPriceViewModel : ViewModel() {
 
@@ -24,6 +25,7 @@ class SpotPriceViewModel : ViewModel() {
         viewModelScope.launch {
             isLoading.value = true
             try {
+                //delay(2000)// to test the circular progress bar
                 val apiService = ElectricityPriceAPI.getInstance()
                 val response = apiService.getPrices()
                 prices.value = response.prices
