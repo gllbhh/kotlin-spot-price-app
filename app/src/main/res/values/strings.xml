@@ -10,4 +10,6 @@
     <string name="app_description">This app shows spot electricity prices from the Pörssisähkö API.</string>
     <string name="info_2">Prices are shown in cents per kWh.</string>
     <string name="current_price">Current price</string>
+    <string name="price_now">Price now</string>
+    <string name="c_kwh">c/kWh</string>
 </resources>
