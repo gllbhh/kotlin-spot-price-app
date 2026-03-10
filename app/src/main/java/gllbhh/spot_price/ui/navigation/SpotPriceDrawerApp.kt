@@ -36,7 +36,9 @@ fun SpotPriceDrawerApp(
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
-            ModalDrawerSheet {
+            ModalDrawerSheet(
+                drawerContainerColor = MaterialTheme.colorScheme.surfaceContainer
+            ) {
                 Text(
                     text = stringResource(R.string.menu),
                     modifier = Modifier.padding(16.dp)
@@ -84,7 +86,8 @@ fun SpotPriceDrawerApp(
                 TopAppBar(
                     title = { Text(title) },
                     colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = androidx.compose.ui.graphics.Color.Transparent
+                        containerColor = MaterialTheme.colorScheme.surface,
+                        titleContentColor = MaterialTheme.colorScheme.onSurface
                     ),
                     navigationIcon = {
                         IconButton(

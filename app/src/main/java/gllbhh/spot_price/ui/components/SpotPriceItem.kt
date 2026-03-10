@@ -26,12 +26,12 @@ fun SpotPriceItem(priceItem: ElectricityPrice) {
             .fillMaxWidth(),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.8f)
+            containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.8f)
         )
     ){
         Text(
             text = "$start-$end: %.2f ct".format(priceItem.price),
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
-            color = MaterialTheme.colorScheme.onBackground)
+            color = MaterialTheme.colorScheme.onPrimaryContainer)
     }
 }
