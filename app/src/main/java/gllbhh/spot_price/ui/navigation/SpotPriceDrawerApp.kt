@@ -29,6 +29,7 @@ fun SpotPriceDrawerApp(
     val title = when (currentRoute) {
         AppRoutes.Prices -> stringResource(R.string.prices)
         AppRoutes.Info -> stringResource(R.string.info)
+        AppRoutes.CurrentPrice -> stringResource(R.string.current_price)
         else -> stringResource(R.string.menu)
     }
 
@@ -39,6 +40,16 @@ fun SpotPriceDrawerApp(
                 Text(
                     text = stringResource(R.string.menu),
                     modifier = Modifier.padding(16.dp)
+                )
+                NavigationDrawerItem(
+                    label = { Text(stringResource(R.string.current_price)) },
+                    selected = currentRoute == AppRoutes.CurrentPrice,
+                    onClick = {
+                        navController.navigate(AppRoutes.CurrentPrice) {
+                            launchSingleTop = true
+                        }
+                        scope.launch { drawerState.close() }
+                    }
                 )
 
                 NavigationDrawerItem(

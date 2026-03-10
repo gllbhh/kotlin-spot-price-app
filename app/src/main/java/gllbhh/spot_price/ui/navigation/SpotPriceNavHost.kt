@@ -5,11 +5,11 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import gllbhh.spot_price.ui.screens.InfoScreen
 import gllbhh.spot_price.ui.screens.SpotPriceScreen
 import gllbhh.spot_price.viewmodel.SpotPriceViewModel
 import androidx.navigation.NavHostController
+import gllbhh.spot_price.ui.screens.CurrentPriceScreen
 
 @Composable
 fun SpotPriceNavHost(
@@ -28,9 +28,15 @@ fun SpotPriceNavHost(
                 viewModel = spotPriceViewModel
             )
         }
+        composable(AppRoutes.CurrentPrice) {
+            CurrentPriceScreen(
+                viewModel = spotPriceViewModel
+            )
+        }
 
         composable(AppRoutes.Info) {
             InfoScreen()
         }
+
     }
 }

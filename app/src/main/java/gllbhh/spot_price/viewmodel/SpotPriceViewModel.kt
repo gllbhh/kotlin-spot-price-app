@@ -2,14 +2,14 @@ package gllbhh.spot_price.viewmodel
 
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import gllbhh.spot_price.R
 import gllbhh.spot_price.model.ElectricityPrice
 import gllbhh.spot_price.model.ElectricityPriceAPI
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.delay
+import java.time.LocalTime
+import java.time.Instant
 
 class SpotPriceViewModel : ViewModel() {
 
@@ -22,6 +22,21 @@ class SpotPriceViewModel : ViewModel() {
     var pricesRetrieved = mutableStateOf(true)
         private set
 
+    val currentPrice = mutableStateOf(0.0)
+
+    fun findCurrentPrice(prices: List<ElectricityPrice>): Double? {
+
+        val now = Instant.now()
+
+        val current = prices.find { price ->
+            val start = Instant.parse(price.startDate)
+            val end = Instant.parse(price.endDate)
+
+            now.isAfter(start) && now.isBefore(end)
+        }
+
+        return current?.price
+    }
 
     init {
         getPrices()
@@ -35,6 +50,8 @@ class SpotPriceViewModel : ViewModel() {
                 val apiService = ElectricityPriceAPI.getInstance()
                 val response = apiService.getPrices()
                 prices.value = response.prices
+                val hour = LocalTime.now().hour
+                currentPrice.value = findCurrentPrice(prices.value)?:0.0
                 pricesRetrieved.value = true
             } catch (e: Exception) {
                 pricesRetrieved.value = false
@@ -44,4 +61,6 @@ class SpotPriceViewModel : ViewModel() {
             }
         }
     }
+
+
 }
