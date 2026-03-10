@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Spot Price</string>
+    <string name="menu">Menu</string>
+    <string name="prices">Prices</string>
+    <string name="info">Info</string>
+    <string name="loading_prices">Loading prices...</string>
+    <string name="error_loading_data_message">Ooops! Something went wrong! Please check your internet connection!</string>
+    <string name="about_this_app">About this app</string>
+    <string name="porssisahko_api">Pörssisähkö API</string>
+    <string name="app_description">This app shows spot electricity prices from the Pörssisähkö API.</string>
+    <string name="info_2">Prices are shown in cents per kWh.</string>
 </resources>

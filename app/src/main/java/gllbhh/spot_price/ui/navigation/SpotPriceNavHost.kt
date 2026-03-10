@@ -9,10 +9,13 @@ import androidx.navigation.compose.rememberNavController
 import gllbhh.spot_price.ui.screens.InfoScreen
 import gllbhh.spot_price.ui.screens.SpotPriceScreen
 import gllbhh.spot_price.viewmodel.SpotPriceViewModel
+import androidx.navigation.NavHostController
 
 @Composable
-fun SpotPriceNavHost(modifier: Modifier = Modifier) {
-    val navController = rememberNavController()
+fun SpotPriceNavHost(
+    navController: NavHostController,
+    modifier: Modifier = Modifier
+) {
     val spotPriceViewModel: SpotPriceViewModel = viewModel()
 
     NavHost(
@@ -22,7 +25,7 @@ fun SpotPriceNavHost(modifier: Modifier = Modifier) {
     ) {
         composable(AppRoutes.Prices) {
             SpotPriceScreen(
-                viewModel = spotPriceViewModel,
+                viewModel = spotPriceViewModel
             )
         }
 

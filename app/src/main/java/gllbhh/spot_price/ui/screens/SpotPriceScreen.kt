@@ -16,8 +16,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import gllbhh.spot_price.R
 import gllbhh.spot_price.ui.components.SpotPriceItem
 import gllbhh.spot_price.viewmodel.SpotPriceViewModel
 
@@ -28,6 +30,7 @@ fun SpotPriceScreen(
 ) {
     val prices = viewModel.prices.value
     val isLoading = viewModel.isLoading.value
+
 
     if (isLoading){
         Box(
@@ -40,7 +43,7 @@ fun SpotPriceScreen(
                 )
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
-                    text = "Loading prices...",
+                    text = stringResource(R.string.loading_prices),
                     color = MaterialTheme.colorScheme.onBackground
                 )
             }
@@ -50,6 +53,14 @@ fun SpotPriceScreen(
             modifier = modifier.padding(horizontal = 16.dp),
             verticalArrangement = Arrangement.spacedBy(1.dp)
         ) {
+            if (!viewModel.pricesRetrieved.value){
+                item {
+                    Text(
+                        text = stringResource(R.string.error_loading_data_message),
+                        color = MaterialTheme.colorScheme.error
+                    )
+                }
+            }
             items(prices) { item ->
                 SpotPriceItem(priceItem = item)
 
